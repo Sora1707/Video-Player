@@ -1,0 +1,95 @@
+<!-- https://chatgpt.com/c/693d6f69-c7f4-8324-8d63-52720f28d2f7 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Netflix-Style Video Player</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/x-icon" href="icon.ico" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="file-inputs">
+                <h2>Load Video & Subtitles</h2>
+                <div class="input-group">
+                    <label for="videoFile">Select Video File:</label>
+                    <input type="file" id="videoFile" class="file-input" accept="video/*" />
+                </div>
+                <div class="input-group">
+                    <label for="youtubeId">Youtube Video Id:</label>
+                    <input id="youtubeId" type="text" placeholder="Youtube Video Id" class="text-input" />
+                </div>
+                <div class="video-error" id="videoError">The provided video file or url is invalid or corrupted.</div>
+                <div class="input-group">
+                    <label for="srtFile">Select SRT Subtitle File (Optional):</label>
+                    <input type="file" id="srtFile" class="file-input" accept=".srt" />
+                </div>
+            </div>
+
+            <div class="video-player" id="videoPlayer">
+                <div class="video-content">
+                    <video id="video"></video>
+                    <div id="player"></div>
+                </div>
+
+                <div class="subtitle-container" id="subtitleContainer">
+                    <div id="original-subtitle-hide-bar"></div>
+                    <div class="subtitle-text" id="subtitleText">No subtitles loaded</div>
+                </div>
+
+                <div class="controls active" id="controls">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress" id="progress"></div>
+                        <div class="hover-time" id="hoverTime">0:00</div>
+                    </div>
+
+                    <div class="control-buttons">
+                        <div class="left-controls">
+                            <button class="play-btn" id="playBtn">▶</button>
+                            <div class="volume-control">
+                                <button id="volumeBtn">🔊</button>
+                                <div class="volume-slider">
+                                    <input type="range" id="volumeSlider" min="0" max="100" value="100" />
+                                </div>
+                            </div>
+                            <span class="time-display" id="timeDisplay">00:00 / 00:00</span>
+                        </div>
+
+                        <div class="right-controls">
+                            <button id="subtitleBtn">CC</button>
+                            <button class="fullscreen-btn" id="fullscreenBtn">⛶</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="youtube-player" id="youtubePlayer"></div>
+
+            <div class="keyboard-hints">
+                <h3>Keyboard Shortcuts:</h3>
+                <p><strong>Space</strong> - Play/Pause</p>
+                <p><strong>C</strong> - Toggle Subtitles</p>
+                <p><strong>← →</strong> - Skip 5 seconds backward/forward</p>
+                <p><strong>, .</strong> - Previous/Next frame</p>
+                <p><strong>F</strong> - Fullscreen</p>
+                <p><strong>H</strong> - Toggle Hide Original Subtitles</p>
+                <p><strong>Esc</strong> - Exit Fullscreen</p>
+            </div>
+        </div>
+
+        <script src="script/util.js"></script>
+
+        <script src="script/video/controls.js"></script>
+        <script src="script/video/video-player.js"></script>
+        <script src="script/video/file.js"></script>
+        <script src="script/video/youtube.js"></script>
+
+        <script src="script/subtitle.js"></script>
+
+        <script src="script/fullscreen.js"></script>
+
+        <script src="script/index.js"></script>
+    </body>
+</html>
